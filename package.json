@@ -1,0 +1,22 @@
+{
+  "name": "wakeradio",
+  "version": "1.0.0",
+  "description": "Wakes you up with music !",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "music",
+    "radio",
+    "webradio",
+    "wake"
+  ],
+  "dependencies": {
+	  "express": "~4.10.2",
+	  "socket.io": "~1.4.5",
+    "play-sound": "~1.1.1"
+  },
+  "author": "nathsou",
+  "license": "MIT"
+}
