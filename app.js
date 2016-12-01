@@ -25,18 +25,16 @@ io.on('connection', (socket) => {
 
 	socket.on('set_volume', (new_vol) => {
 		console.log(new_vol);
+		player.setVolume(50);
+		//player.setVolume(new_vol);
 	});
 
 	socket.on('volume_req', () => {
-		getVolume((volume) => {
-			socket.emit('volume', volume);
-		});
+
 	});
 
 	socket.on('current_req', () => {
-		getCurrentlyPlaying((curr) => {
-			socket.emit('current', curr);
-		});
+
 	});	
 
 	socket.on('pause', () => {
@@ -48,5 +46,9 @@ io.on('connection', (socket) => {
 		 player.mute();
 		 console.log('mute');
 	});
+
+	socket.on('error', e => {
+		console.warn(e);
+	})
 
 });
