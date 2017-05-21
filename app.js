@@ -8,18 +8,25 @@ const express = require('express'),
 
 app.use(express.static(__dirname + '/public'));
 
-var url = 'http://stream.srg-ssr.ch/m/rsc_fr/mp3_128';
+var url = 'http://chai5she.cdn.dvmr.fr/franceinter-midfi.mp3';
 
-var player = new Mplayer(url);
+var player = new Mplayer(url), muted = false;
 
 var alarm_timestamps = [];
 
 //check regularly if an alarm should ring
 
 setInterval(() => {
-	if (alarm_timestamps.length !== 0 && alarm_timestamps[0] < new Date().getTime()) {
-		player.play();
-		alarm_timestamps.splice(0, 1);
+
+	if (alarm_timestamps.length !== 0) {
+
+		if (alarm_timestamps[0] < Date.now()) {
+			if (muted) mute();
+			player.play();
+			alarm_timestamps.splice(0, 1);
+		} else {
+			console.log(`${(alarm_timestamps[0] - Date.now()) / 1000} seconds remaining`);
+		}
 	}
 }, 1000);
 
@@ -38,12 +45,18 @@ http.listen(3000, () => {
 
 });
 
+let mute = () => {
+	player.mute();
+	muted = !muted;
+	console.log('mute');
+};
+
 io.on('connection', (socket) => {
 	console.log('a user connected');
 
 	socket.on('set_volume', (new_vol) => {
 		console.log(new_vol);
-		//player.setVolume(new_vol);
+		player.setVolume(new_vol);
 	});
 
 	socket.on('volume_req', () => {
@@ -65,8 +78,7 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('mute', () => {
-		 player.mute();
-		 console.log('mute');
+		mute();
 	});
 
 	socket.on('error', e => {

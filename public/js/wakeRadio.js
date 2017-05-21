@@ -20,7 +20,10 @@ $('#volume').change(function(e) {
 });
 
 $('#wake-btn').click(function(e) {
-	let timestamp = new Date($('#wake_date').val()).getTime() + parseInt($('#hours').val()) * 3600000 + parseInt($('#minutes').val()) * 60000;
+	let date = $('#wake_date').val().split('-');
+	console.log('offset: ' + new Date().getTimezoneOffset());
+	let timestamp = Date.UTC(parseInt(date[0]), parseInt(date[1] - 1), parseInt(date[2]), parseInt($('#hours').val()), parseInt($('#minutes').val() - 120));
+	console.log(new Date(timestamp));
 	socket.emit('add_alarm', timestamp);
 });
 
