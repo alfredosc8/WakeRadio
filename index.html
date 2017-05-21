@@ -7,41 +7,21 @@
 		
 		<!-- CSS  -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-		<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	</head>
-	
-	<body>
-			
-		<nav class="teal darken-2" role="navigation">
-			<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">WakeMeUp</a>
 
-			<ul class="right hide-on-med-and-down">
-				<li><a href="javascript:void(0)"><i id='play-btn' class="material-icons">play_arrow</i></a></li>
-				<li><a href="javascript:void(0)"><i id='pause-btn' class="material-icons">pause</i></a></li>
-				<li><a href="javascript:void(0)"><i id='mute-btn' class="material-icons">volume_mute</i></a></li>
-				 <form action="#">
-    <p class="range-field">
-      <input type="range" id="volume" value="70" min="0" max="100" step="1"/>
-    </p>
-  </form>
-			</ul>
-			
-			      <ul class="side-nav" id="mobile-demo">
-					<li><a href="sass.html">Sass</a></li>
-					<li><a href="badges.html">Components</a></li>
-					<li><a href="collapsible.html">Javascript</a></li>
-					<li><a href="mobile.html">Mobile</a></li>
-				</ul>
-			
-				<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-			</div>
-		</nav>
+	<body>
+
+		<button id='toggle-btn'>toggle playing</button>
+		<button id='mute-btn'>mute</button></br>
+
+		<input type="date" id="wake_date"><label for='wake_date'> at </label>
+		<input type="number" value="7" id='hours' min="0" step="1" max="23"><label for="hour">h</label>
+		<input type="number" value="30" id='minutes' min="0" step="1" max="59"><label for="min">m</label>
+		<button id='wake-btn'> wake me up!</button>
+
 
 		<!--  Scripts-->
 		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src="js/materialize.js"></script>
-		<script src="js/init.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="js/wakeRadio.js"></script>
 
